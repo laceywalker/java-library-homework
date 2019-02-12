@@ -11,6 +11,7 @@ public class LibraryTest {
     Book book2;
     Book book3;
     Book book4;
+    Borrower borrower;
 
    @Before
     public void before(){
@@ -20,6 +21,7 @@ public class LibraryTest {
        book2 = new Book("Lemons: A History", "Cornelius Flowers", "biography");
        book3 = new Book("Curses and How to Yield Them", "Ursula Smith", "non-fiction");
        book4 = new Book("A Confederacy of Dunces", "John Kennedy Toole", "fiction");
+       borrower = new Borrower("Jim Jones");
    }
 
    @Test
@@ -44,6 +46,12 @@ public class LibraryTest {
             library.addBook(book);
         }
        assertEquals(10, library.getNumberOfBooks());
+   }
+
+   @Test
+    public void canAddToBorrowerCollection(){
+       borrower.borrowBook(book);
+       assertEquals(1, borrower.checkNumberOfBooks());
    }
 
 
