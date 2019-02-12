@@ -48,11 +48,27 @@ public class LibraryTest {
        assertEquals(10, library.getNumberOfBooks());
    }
 
+//   @Test
+//    public void canAddToBorrowerCollection(){
+//       borrower.borrowBook(book);
+//       assertEquals(1, borrower.checkNumberOfBooks());
+//   }
+
    @Test
-    public void canAddToBorrowerCollection(){
-       borrower.borrowBook(book);
-       assertEquals(1, borrower.checkNumberOfBooks());
+    public void canRemoveBookFromCollection(){
+       library.addBook(book);
+       library.addBook(book2);
+       library.removeBook(book);
+       assertEquals(1, library.getNumberOfBooks());
    }
 
+   @Test
+    public void borrowerCanBorrowBook(){
+       library.addBook(book);
+       library.loanBook(borrower, book);
+       assertEquals(1, borrower.checkNumberOfBooks());
+       library.removeBook(book);
+       assertEquals(0, library.getNumberOfBooks());
+   }
 
 }
