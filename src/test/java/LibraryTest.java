@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 public class LibraryTest {
 
     Library library;
+    Library library2;
     Book book;
     Book book2;
     Book book3;
@@ -13,7 +14,8 @@ public class LibraryTest {
 
    @Before
     public void before(){
-       library = new Library();
+       library = new Library(10);
+       library2 = new Library(8);
        book = new Book("The Shining", "Stephen King", "fiction");
        book2 = new Book("Lemons: A History", "Cornelius Flowers", "biography");
        book3 = new Book("Curses and How to Yield Them", "Ursula Smith", "non-fiction");
@@ -26,10 +28,23 @@ public class LibraryTest {
    }
 
    @Test
+   public void canSetCapacity(){
+       assertEquals(10, library.getCapacity());
+   }
+
+   @Test
     public void canAddBook(){
        library.addBook(book);
        assertEquals(1, library.getNumberOfBooks());
    }
 
-   
+   @Test
+    public void cantAddOverCapacity(){
+        for (int i = 0; i<12; i++){
+            library.addBook(book);
+        }
+       assertEquals(10, library.getNumberOfBooks());
+   }
+
+
 }
